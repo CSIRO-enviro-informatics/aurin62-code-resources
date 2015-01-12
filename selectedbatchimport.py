@@ -2,6 +2,13 @@ import os
 import json
 import subprocess
 import sys
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("datadir")
+parser.add_argument("dataimportcfg")
+parser.add_argument("dataimportsel")
+args = parser.parse_args()
 
 from pprint import pprint
 
@@ -9,9 +16,13 @@ abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
 
-data_dirname = '/opt/repos/test/aurin62-data'
-dataimportcfg_fname = 'dataimportcfg.json'
-dataimportsel_fname = "dataimportselection.txt"
+#data_dirname = '/opt/repos/test/aurin62-data'
+#dataimportcfg_fname = 'dataimportcfg.json'
+#dataimportsel_fname = "dataimportselection.txt"
+
+data_dirname = args.datadir
+dataimportcfg_fname = args.dataimportcfg
+dataimportsel_fname = args.dataimportsel
 
 dataimportcfg_file_exists = False
 if os.path.isfile(dataimportcfg_fname):
