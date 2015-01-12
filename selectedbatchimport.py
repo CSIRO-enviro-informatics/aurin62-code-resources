@@ -9,6 +9,7 @@ abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
 
+data_dirname = '/opt/repos/test/aurin62-data'
 dataimportcfg_fname = 'dataimportcfg.json'
 dataimportsel_fname = "dataimportselection.txt"
 
@@ -51,9 +52,13 @@ for anImport in data["imports"]:
     if selected_data_file_exists and anImport["id"] in selected_data:
        print "Importing " + anImport['id']
        filename = anImport["etlgenerate"]
-       path = os.path.dirname(filename)
+       etl_filepath = data_dirname + "/" + filename
+       print "Data file path: " + etl_filepath
+       path = os.path.dirname(etl_filepath)
+       print "Data dir: " + path
        os.chdir(path)
-       subprocess.call(["python", anImport["etlgenerate"]])
+       #subprocess.call(["python", anImport["etlgenerate"]])
+       subprocess.call(["python", etl_filepath])
        subprocess.call(["/usr/bin/psql", "-h",  "localhost", "-d", geoserver_db_name, "-U", geoserver_db_user, "-w", "-f", anImport["etlscript"]])
        pprint(anImport)
        pprint("\n")
