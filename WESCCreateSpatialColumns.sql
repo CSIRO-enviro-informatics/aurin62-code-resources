@@ -1,5 +1,6 @@
 UPDATE meterreading
-SET "spatialGeometry" = ST_GeomFromText('POINT(' || longitude || ' ' || latitude || ')',4283);
+SET "spatialGeometry" = CASE WHEN longitude = '' THEN ST_GeomFromText(NULL,4283)
+	ELSE ST_GeomFromText('POINT(' || longitude || ' ' || latitude || ')',4283) END;
 
 UPDATE utilitysupplydata  
 SET "utilitySupplyRegion" = ST_GeomFromText('POINT(' || "supplyRegionPoints" || ')',4283);
