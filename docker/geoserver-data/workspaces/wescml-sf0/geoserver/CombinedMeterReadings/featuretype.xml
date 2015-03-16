@@ -50,7 +50,7 @@
         <escapeSql>false</escapeSql>
         <geometry>
           <name>spatialRepresentation</name>
-          <type>Polygon</type>
+          <type>MultiPolygon</type>
           <srid>4283</srid>
         </geometry>
       </virtualTable>
