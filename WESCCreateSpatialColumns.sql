@@ -6,4 +6,4 @@ UPDATE utilitysupplydata
 SET "utilitySupplyRegion" = ST_GeomFromText('POINT(' || "supplyRegionPoints" || ')',4283);
 
 UPDATE combinedmeterreadings 
-SET "spatialRepresentation" = ST_GeomFromText('POLYGON((' || "combinedMeterReadingsPoints" || '))',4283);
+SET "spatialRepresentation" = ST_GeomFromText('MULTIPOLYGON((' || "combinedMeterReadingsPoints" || '))',4283);
